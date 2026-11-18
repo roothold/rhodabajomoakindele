@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://rhodabajomoakindele.com/sitemap.xml
