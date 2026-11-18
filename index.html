@@ -543,7 +543,7 @@ button.cd-link{background:none;font-family:inherit;cursor:pointer}
     <h2 class="lv-t">Celebrate with us, wherever you are</h2>
     <p class="lv-s">The services will be streamed live for family and friends around the world.</p>
     <div id="lvList"></div>
-    <p class="lv-note">All times are Eastern Time (Washington DC). Each stream opens in a new tab.</p>
+    <p class="lv-note">All times are Eastern Time (Washington DC). Each stream opens in a new tab and stays available to watch afterwards.</p>
   </div></div>
 </div>
 
@@ -830,19 +830,19 @@ document.getElementById('cdClose').onclick=function(){ closeOverlay(cd); };
 var LIVE=[
  {name:'Service of Songs',day:'Thursday, 19 November',meta:'7:00 to 9:00 PM&ensp;|&ensp;Jesus House DC',url:'https://evt.live/roa-service-of-songs',
   s:Date.UTC(2026,10,20,0,0),e:Date.UTC(2026,10,20,2,0)},
- {name:'Funeral Service &amp; Reception',day:'Saturday, 21 November',meta:'Funeral Service 11:00 AM to 1:00 PM&ensp;|&ensp;RCCG Victory Temple<br>Reception from 2:00 PM&ensp;|&ensp;Omny Banquet Hall',url:'https://evt.live/roa-funeral-celebration',
-  s:Date.UTC(2026,10,21,16,0),e:Date.UTC(2026,10,21,23,0)}
+ {name:'Funeral Service &amp; Reception',day:'Saturday, 21 November',meta:'Stream begins 10:00 AM with the viewing<br>Funeral Service 11:00 AM to 1:00 PM&ensp;|&ensp;RCCG Victory Temple<br>Reception from 2:00 PM&ensp;|&ensp;Omny Banquet Hall',url:'https://evt.live/roa-funeral-celebration',
+  s:Date.UTC(2026,10,21,15,0),e:Date.UTC(2026,10,21,23,0)}
 ];
 var liveOv=document.getElementById('live'), lvList=document.getElementById('lvList'), liveBtn=document.getElementById('liveBtn');
-function liveState(ev,now){ if(now>=ev.s-30*60000&&now<=ev.e+30*60000) return 'now'; if(now<ev.s) return 'next'; return 'done'; }
+function liveState(ev,now){ if(now>=ev.s-15*60000&&now<=ev.e+30*60000) return 'now'; if(now<ev.s) return 'next'; return 'done'; }
 function renderLive(){ var now=Date.now(), h='', nextDone=false, anyNow=false;
   LIVE.forEach(function(ev){ var st=liveState(ev,now), b='';
     if(st==='now'){ b='<span class="lv-badge now">Live now</span>'; anyNow=true; }
     else if(st==='next'&&!nextDone){ b='<span class="lv-badge next">Up next</span>'; nextDone=true; }
-    else if(st==='done'){ b='<span class="lv-badge done">Concluded</span>'; }
+    else if(st==='done'){ b='<span class="lv-badge done">On demand</span>'; }
     h+='<a class="lv-card" href="'+ev.url+'" target="_blank" rel="noopener"><div class="lv-row"><span class="lv-day">'+ev.day+'</span>'+b+'</div>'+
        '<div class="lv-name">'+ev.name+'</div><div class="lv-meta">'+ev.meta+'</div>'+
-       '<span class="lv-go"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>'+(st==='now'?'Watch now':'Open the stream')+'</span></a>';
+       '<span class="lv-go"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>'+(st==='now'?'Watch now':st==='done'?'Watch the replay':'Open the stream')+'</span></a>';
   });
   lvList.innerHTML=h; liveBtn.classList.toggle('on',anyNow);
 }
