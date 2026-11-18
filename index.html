@@ -362,28 +362,9 @@ img{display:block;max-width:100%}
         <button class="icbtn sound off" id="sound" aria-label="Toggle music">
           <svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="wave2" d="M16 8.5a5 5 0 010 7"/><line class="slash" x1="19" y1="5" x2="5" y2="19"/></svg>
         </button>
-        <button class="icbtn hamb" aria-label="Menu"><span></span><span></span><span></span></button>
       </nav>
     </div>
   </header>
-
-  <div class="menu-bk" id="menuBk"></div>
-  <aside class="menu" id="menu" aria-hidden="true">
-    <button class="menu-close" id="menuClose" aria-label="Close menu">&times;</button>
-    <nav class="menu-links" aria-label="Chapters">
-      <button data-go="0">Home</button>
-      <button data-go="1">Her Story</button>
-      <button data-go="2">A Beautiful Love Story</button>
-      <button data-go="3">The Celebration</button>
-      <button data-go="4">The Program</button>
-      <button data-go="5">A Life in Pictures</button>
-      <button data-go="6">Her Legacy</button>
-    </nav>
-    <div class="menu-foot">
-      <button class="menu-sound" id="menuSound">Play Music</button>
-      <a href="https://www.forevermissed.com/rhoda-olubunmi-bajomo-akindele/about" target="_blank" rel="noopener">Visit Forever Missed &rarr;</a>
-    </div>
-  </aside>
 
   <div class="edge l" id="prev" role="button" aria-label="Previous chapter"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></div>
   <div class="edge r" id="next" role="button" aria-label="Next chapter"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></div>
@@ -650,16 +631,7 @@ sbtn.onclick=function(){ toggleMusic(); };
 var musicX=document.getElementById('musicX'); if(musicX) musicX.onclick=function(){ toggleMusic(false); };
 
 // slide-in menu
-var menu=document.getElementById('menu'), menuBk=document.getElementById('menuBk');
-function openMenu(){menu.classList.add('open');menuBk.classList.add('open');menu.setAttribute('aria-hidden','false');}
-function closeMenu(){menu.classList.remove('open');menuBk.classList.remove('open');menu.setAttribute('aria-hidden','true');}
-var hambBtn=document.querySelector('.hamb'); if(hambBtn) hambBtn.onclick=openMenu;
-document.getElementById('menuClose').onclick=closeMenu;
-menuBk.onclick=closeMenu;
-menu.querySelectorAll('[data-go]').forEach(function(b){b.onclick=function(){goTo(+b.getAttribute('data-go'));closeMenu();}});
-var mSound=document.getElementById('menuSound');
-mSound.onclick=function(){ closeMenu(); toggleMusic(true); };
-window.addEventListener('keydown',function(e){ if(e.key==='Escape') closeMenu(); });
+function closeMenu(){}
 
 // ===== overlays: program viewer, gallery, lightbox =====
 var overlayOpen=null;
