@@ -528,6 +528,37 @@ button.cd-link{background:none;font-family:inherit;cursor:pointer}
 @keyframes mote{0%{opacity:0;transform:translate(0,0)}22%{opacity:var(--o)}50%{transform:translate(var(--dx),var(--dy))}78%{opacity:calc(var(--o)*.55)}100%{opacity:0;transform:translate(calc(var(--dx)*1.7),calc(var(--dy)*2))}}
 .lite .motes .mote:nth-child(n+7){display:none}
 @media (prefers-reduced-motion:reduce){ .lit .lreveal,.lit .sunbloom{animation:none!important} .sunbloom{opacity:.18} .mote{opacity:.35} .ray::after{display:none} }
+
+/* ===== Covenant rainbow: a translucent spectral arc in the air behind her portrait (never over the photo) =====
+   Intensity: --rb (0 to 1). Appears, breathes and fades on a slow cycle. */
+.rainbow{position:absolute;pointer-events:none;z-index:-2;--rb:1;opacity:0}
+.lit .rainbow{opacity:1;transition:opacity 1s}
+.subj-cut .rainbow{left:50%;top:34%;width:158%;aspect-ratio:1;transform:translate(-50%,-50%)}
+.rb-arc{position:absolute;inset:0;border-radius:50%;opacity:0;will-change:opacity,transform;
+  background:radial-gradient(circle at 50% 50%,
+    rgba(0,0,0,0) 52%,
+    rgba(176,140,226,.10) 54.5%, rgba(176,140,226,.24) 56.5%,
+    rgba(140,190,236,.25) 58.5%,
+    rgba(120,210,170,.24) 60.5%,
+    rgba(250,226,150,.30) 62.5%,
+    rgba(252,186,150,.26) 64.5%,
+    rgba(240,150,180,.20) 66.5%, rgba(240,150,180,.06) 68.5%,
+    rgba(0,0,0,0) 70%);
+  -webkit-mask-image:conic-gradient(from -118deg at 50% 50%,transparent 0deg,rgba(0,0,0,.55) 28deg,#000 62deg,#000 104deg,rgba(0,0,0,.45) 150deg,transparent 196deg);
+          mask-image:conic-gradient(from -118deg at 50% 50%,transparent 0deg,rgba(0,0,0,.55) 28deg,#000 62deg,#000 104deg,rgba(0,0,0,.45) 150deg,transparent 196deg);
+  animation:covenant 40s ease-in-out -4s infinite}
+/* faint secondary bow, colours reversed, as in nature */
+.rb-arc.rb-2{inset:-10%;
+  background:radial-gradient(circle at 50% 50%,rgba(0,0,0,0) 56%,rgba(240,150,180,.07) 58.5%,rgba(250,226,150,.09) 61%,rgba(120,210,170,.08) 63.5%,rgba(140,190,236,.07) 66%,rgba(176,140,226,.06) 68.5%,rgba(176,140,226,0) 71%);
+  animation-delay:-2.5s}
+@keyframes covenant{0%,10%{opacity:0;transform:scale(.97)}26%{opacity:calc(var(--rb)*.85)}40%{opacity:var(--rb);transform:scale(1)}56%{opacity:calc(var(--rb)*.6)}70%,100%{opacity:0;transform:scale(1.015)}}
+/* mobile hero: centred on her head, behind the portrait */
+.mh-rainbow{z-index:1;left:50%;bottom:calc(70svh * .52);width:min(150vw,820px);aspect-ratio:1;transform:translate(-50%,50%)}
+@media (max-height:520px) and (orientation:landscape) and (max-width:1000px){ .mh-rainbow{left:22%;bottom:auto;top:58%;width:min(70vw,560px);transform:translate(-50%,-50%)} }
+@media (max-width:360px){ .mh-rainbow{bottom:calc(63svh * .52)} }
+@media (prefers-reduced-motion:reduce){ .rb-arc{animation:none!important;opacity:.55} .rb-arc.rb-2{opacity:.4} }
+.nolight .rainbow{display:none!important}
+.lp .rb-arc{animation-play-state:paused!important}
 /* chapter moods: one system, gentle intensity shifts */
 .screen{--li:.9}
 .screen[data-ch="0"]{--li:1}
@@ -607,6 +638,7 @@ button.cd-link{background:none;font-family:inherit;cursor:pointer}
   <div id="mhome">
     <section class="mh-hero">
       <div class="mh-glow"></div>
+      <div class="mh-rainbow rainbow" aria-hidden="true"><i class="rb-arc"></i><i class="rb-arc rb-2"></i></div>
       <div class="mh-light" aria-hidden="true"><div class="lreveal"><div class="haze"></div><div class="sun"></div><div class="sunbloom"></div><i class="ray r2"></i><i class="ray r1"></i><i class="ray r3"></i><div class="motes" data-n="9"></div></div></div>
       <img class="mh-portrait" src="her.webp" fetchpriority="high" alt="Pastor Rhoda Olubunmi Bajomo-Akindele">
       <div class="mh-copy">
@@ -794,7 +826,7 @@ function render(i){
   scene.classList.toggle('opening', !!c.open);
   stitle.innerHTML='<span class="l1">'+c.t1+'</span><span class="l2">'+c.t2+'</span>';
   if(c.cut){
-    subj.className='subj-cut'; subj.innerHTML='<span class="glow"></span><img src="'+c.subj+'" alt="Pastor Rhoda Olubunmi Bajomo-Akindele">';
+    subj.className='subj-cut'; subj.innerHTML='<span class="rainbow" aria-hidden="true"><i class="rb-arc"></i><i class="rb-arc rb-2"></i></span><span class="glow"></span><img src="'+c.subj+'" alt="Pastor Rhoda Olubunmi Bajomo-Akindele">';
   } else {
     subj.className='subj-frame'; subj.innerHTML='<img src="'+c.subj+'" alt="'+c.name+'">';
   }
