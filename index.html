@@ -300,6 +300,8 @@ img{display:block;max-width:100%}
 .pv-page{max-height:100%;max-width:100%;width:auto;height:auto;border-radius:3px;
   box-shadow:0 34px 70px rgba(0,0,0,.6),0 0 0 1px rgba(201,150,47,.25);opacity:0;transition:opacity .35s ease;background:#F3E9CE}
 .pv-page.in{opacity:1}
+button.cd-link{background:none;font-family:inherit;cursor:pointer}
+.inv-page{opacity:0}
 .ov-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:4;width:50px;height:50px;border-radius:50%;
   border:1.5px solid var(--gold-line);display:grid;place-items:center;background:rgba(7,35,25,.55);cursor:pointer;transition:background .2s}
 .ov-arrow:hover{background:rgba(198,150,46,.2)}
@@ -354,6 +356,8 @@ img{display:block;max-width:100%}
 
 @media (max-width:900px){
   .pv-stage{padding:4px 8px 6px}
+  .inv-stage{display:block;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:6px 10px 24px}
+  .inv-page{width:100%;max-height:none}
   .ov-arrow{width:42px;height:42px}.ov-arrow.l{left:6px}.ov-arrow.r{right:6px}
   .pv-dots{display:none}
   .ov-brand .t{font-size:14px}
@@ -497,6 +501,19 @@ img{display:block;max-width:100%}
   <div class="pv-foot"></div>
 </div>
 
+<!-- ===== Invitation ===== -->
+<div class="ov" id="inv" aria-hidden="true" aria-label="Invitation">
+  <div class="ov-top">
+    <div class="ov-brand"><img src="logo.png" alt="">
+      <span><span class="k">A Celebration of Life</span><br><span class="t">The Invitation</span></span></div>
+    <button class="ov-close" id="invClose" aria-label="Close" style="margin-left:auto">&times;</button>
+  </div>
+  <div class="pv-stage inv-stage">
+    <img class="pv-page inv-page" id="invImg" alt="Invitation: A Celebration of Life for Pastor Rhoda Olubunmi Bajomo-Akindele, with the Service of Songs, Funeral Service, Reception and Service of Thanksgiving, 19 to 22 November">
+  </div>
+  <div class="pv-foot"></div>
+</div>
+
 <!-- ===== Chapter detail (mobile) ===== -->
 <div class="ov" id="cd" aria-hidden="true" aria-label="Chapter">
   <div class="ov-top">
@@ -510,6 +527,7 @@ img{display:block;max-width:100%}
       <div class="cd-k" id="cdK"></div>
       <h2 class="cd-t" id="cdT"></h2>
       <p class="cd-n" id="cdN"></p>
+      <button class="cd-link" id="cdInv" type="button">View the Invitation &rarr;</button>
       <a class="cd-link" id="cdLink" href="https://www.forevermissed.com/rhoda-olubunmi-bajomo-akindele/about" target="_blank" rel="noopener">Visit Forever Missed &rarr;</a>
     </div>
   </div>
@@ -541,7 +559,8 @@ var C=[
  {t1:'Chapter 03', t2:'Love Story', label:'1980 · A Union of Faith', name:'A Beautiful Love Story',
   narr:'Her marriage to Dr Olusoji Johnson Akindele, a union rooted in love, faith, and a family that remains her enduring legacy.', subj:'love_couple.jpg'},
  {t1:'Chapter 04', t2:'The Celebration', label:'The Homegoing', name:'The Celebration',
-  narr:'A time to honor her life, reflect on her impact, and celebrate the God she served, with worship, tributes, and family from around the world.', subj:'pic_celebration.jpg'},
+  narr:'A time to honor her life, reflect on her impact, and celebrate the God she served, with worship, tributes, and family from around the world.', subj:'pic_celebration.jpg',
+  cta:{t:'View the Invitation', inv:true}},
  {t1:'Chapter 05', t2:'The Program', label:'Keepsake Edition', name:'The Program',
   narr:'The complete Celebration of Life keepsake: her story, tributes, order of service, hymns, and photographs, to read and to keep.', subj:'bookL.jpg',
   cta:{t:'View the Program', prog:true}},
@@ -580,12 +599,14 @@ function render(i){
     if(c.cta.href){ fh+='<a class="cbtn" href="'+c.cta.href+'" target="_blank" rel="noopener">'+inner+'</a>'; }
     else if(c.cta.prog){ fh+='<button class="cbtn" data-act="prog">'+inner+'</button>'; }
     else if(c.cta.gal){ fh+='<button class="cbtn" data-act="gal">'+inner+'</button>'; }
+    else if(c.cta.inv){ fh+='<button class="cbtn" data-act="inv">'+inner+'</button>'; }
     else { fh+='<button class="cbtn" data-ctago="'+((c.cta.go!=null)?c.cta.go:i)+'">'+inner+'</button>'; }
   }
   fore.innerHTML=fh;
   var b=fore.querySelector('.cbtn[data-ctago]'); if(b) b.onclick=function(){var g=+b.getAttribute('data-ctago'); if(g!==active) goTo(g);};
   var ap=fore.querySelector('.cbtn[data-act="prog"]'); if(ap) ap.onclick=function(){openProgram();};
   var ag=fore.querySelector('.cbtn[data-act="gal"]'); if(ag) ag.onclick=function(){openGallery();};
+  var ai=fore.querySelector('.cbtn[data-act="inv"]'); if(ai) ai.onclick=function(){openInvite();};
   pnum.textContent=(i===0?'—':('0'+(i)).slice(-2)+' / 0'+(n-1));
   pname.textContent=c.open?'':c.name;
   segI.forEach(function(s,k){s.classList.toggle('on',k===i)});
@@ -751,9 +772,18 @@ function openChapter(i){ var c=C[i];
   document.getElementById('cdT').textContent=c.name;
   document.getElementById('cdN').textContent=c.narr;
   cdLink.style.display=(i===6)?'inline-flex':'none';
+  document.getElementById('cdInv').style.display=(i===3)?'inline-flex':'none';
   openOverlay(cd); cd.querySelector('.cd-body').scrollTop=0;
 }
 document.getElementById('cdClose').onclick=function(){ closeOverlay(cd); };
+
+/* invitation viewer */
+var inv=document.getElementById('inv'), invImg=document.getElementById('invImg');
+function openInvite(){ closeMenu(); if(overlayOpen&&overlayOpen!==inv) closeOverlay(overlayOpen);
+  if(!invImg.src){ invImg.onload=function(){invImg.classList.add('in')}; invImg.src='invite.jpg'; }
+  openOverlay(inv); inv.querySelector('.inv-stage').scrollTop=0; }
+document.getElementById('invClose').onclick=function(){ closeOverlay(inv); };
+document.getElementById('cdInv').onclick=function(){ openInvite(); };
 
 /* ===== header: share + scroll-condense ===== */
 (function(){
