@@ -196,7 +196,9 @@ img{display:block;max-width:100%}
   font-size:clamp(30px,9vw,56px);margin:0;
   background:linear-gradient(174deg,#FBEDC4 0%,#E6C87C 34%,#C6962E 76%,#9C6E1C 100%);
   -webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 6px rgba(4,20,14,.65))}
-.mh-sub{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:15.5px;line-height:1.3;margin:11px auto 0;max-width:26ch;
+.mh-name{font-family:'Cormorant Garamond',serif;font-weight:600;color:var(--ivory);font-size:15px;letter-spacing:.015em;
+  line-height:1.25;margin:12px auto 0;max-width:22ch;text-shadow:0 1px 3px rgba(4,20,14,.92)}
+.mh-sub{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory-2);font-size:14px;line-height:1.3;margin:7px auto 0;max-width:26ch;
   text-shadow:0 1px 3px rgba(4,20,14,.95),0 2px 16px rgba(4,20,14,.9)}
 .mh-scrim{position:absolute;left:0;right:0;bottom:0;height:52%;z-index:3;pointer-events:none;
   background:linear-gradient(180deg,transparent,rgba(4,20,14,.55) 46%,rgba(4,20,14,.94))}
@@ -249,9 +251,9 @@ img{display:block;max-width:100%}
   .scene,.edge,.progress,.atmos,.vign{display:none!important}
   #mhome{display:block}
   .nav{position:fixed;background:linear-gradient(180deg,rgba(5,26,18,.92),rgba(5,26,18,0))}
-  .nav-in{padding-block:10px}
-  .brand img{height:44px}
-  .brand .nm{font-size:13px}
+  .nav-in{padding-block:12px}
+  .brand img{height:46px}
+  .brand span{display:none}
 }
 
 /* ===== overlays: program viewer + gallery (shared chrome) ===== */
@@ -406,6 +408,7 @@ img{display:block;max-width:100%}
       <div class="mh-copy">
         <div class="mh-kicker">Faith in Full Bloom</div>
         <h1 class="mh-cel">A Celebration<br>of Life</h1>
+        <div class="mh-name">Pastor Rhoda Olubunmi Bajomo-Akindele</div>
         <p class="mh-sub">A life of faith, service, and enduring impact.</p>
       </div>
       <div class="mh-scrim"></div>
