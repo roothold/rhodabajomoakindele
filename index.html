@@ -183,6 +183,77 @@ img{display:block;max-width:100%}
 }
 @media (prefers-reduced-motion:reduce){.scene{transition:opacity .2s}}
 
+/* ===== mobile cinematic home (film-poster composition) ===== */
+#mhome{display:none}
+.mh-hero{position:relative;min-height:100svh;overflow:hidden;isolation:isolate}
+.mh-glow{position:absolute;left:50%;top:42%;transform:translate(-50%,-50%);width:135%;height:66%;z-index:1;
+  background:radial-gradient(ellipse at 50% 45%,rgba(231,200,124,.42),rgba(231,200,124,.08) 48%,transparent 68%);filter:blur(14px)}
+.mh-portrait{position:absolute;left:50%;bottom:0;transform:translateX(-50%);height:70svh;width:auto;max-width:none;z-index:2;
+  filter:drop-shadow(0 22px 42px rgba(0,0,0,.62))}
+.mh-copy{position:absolute;left:0;right:0;top:0;z-index:3;text-align:center;padding:72px 20px 0}
+.mh-kicker{font-size:10px;letter-spacing:.36em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:8px}
+.mh-cel{font-family:'Cormorant Garamond',serif;font-weight:600;text-transform:uppercase;line-height:.92;letter-spacing:.012em;
+  font-size:clamp(30px,9vw,56px);margin:0;
+  background:linear-gradient(174deg,#FBEDC4 0%,#E6C87C 34%,#C6962E 76%,#9C6E1C 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 6px rgba(4,20,14,.65))}
+.mh-sub{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ivory);font-size:15.5px;line-height:1.3;margin:11px auto 0;max-width:26ch;
+  text-shadow:0 1px 3px rgba(4,20,14,.95),0 2px 16px rgba(4,20,14,.9)}
+.mh-scrim{position:absolute;left:0;right:0;bottom:0;height:52%;z-index:3;pointer-events:none;
+  background:linear-gradient(180deg,transparent,rgba(4,20,14,.55) 46%,rgba(4,20,14,.94))}
+.mh-actions{position:absolute;left:0;right:0;bottom:0;z-index:4;display:flex;flex-direction:column;align-items:center;gap:11px;
+  padding:0 max(22px,env(safe-area-inset-left,0px)) calc(16px + env(safe-area-inset-bottom,0px))}
+.mh-btn{width:100%;max-width:370px;border-radius:40px;padding:16px 18px;font-family:'Montserrat',sans-serif;font-weight:700;
+  font-size:12px;letter-spacing:.17em;text-transform:uppercase;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:10px}
+.mh-btn svg{width:16px;height:16px;flex:none}
+.mh-btn.gold{background:linear-gradient(180deg,#F5E2AC,#D9B45E);color:#3A2A06;border:none;box-shadow:0 12px 28px rgba(0,0,0,.45);stroke:#3A2A06;fill:#3A2A06}
+.mh-btn.out{background:rgba(7,35,25,.46);border:1.5px solid var(--gold-line);color:var(--ivory);stroke:var(--gold);fill:var(--gold);backdrop-filter:blur(3px)}
+.mh-explore{margin-top:6px;background:none;border:none;color:var(--gold);font-family:'Montserrat',sans-serif;font-weight:700;
+  font-size:10px;letter-spacing:.28em;text-transform:uppercase;cursor:pointer;display:inline-flex;flex-direction:column;align-items:center;gap:5px}
+.mh-explore svg{width:16px;height:16px;stroke:var(--gold);fill:none;stroke-width:1.6;animation:mhbob 1.8s ease-in-out infinite}
+@keyframes mhbob{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+
+.mh-chapters{position:relative;z-index:3;background:linear-gradient(180deg,#06231A,#041A13);padding:42px 0 54px}
+.mh-ch-head{text-align:center;padding:0 22px 20px}
+.mh-ch-k{font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.mh-ch-t{font-family:'Cormorant Garamond',serif;font-size:30px;color:var(--ivory);margin-top:6px;line-height:1}
+.mh-track{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 22px 8px;scrollbar-width:none}
+.mh-track::-webkit-scrollbar{display:none}
+.mh-card{flex:0 0 70%;max-width:265px;scroll-snap-align:center;border-radius:13px;overflow:hidden;
+  border:1px solid rgba(201,150,47,.42);background:#083024;cursor:pointer}
+.mh-card img{width:100%;height:158px;object-fit:cover;object-position:center 22%}
+.mh-card .cap{padding:12px 14px 15px;text-align:center}
+.mh-card .cl{font-size:8.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.mh-card .ct{font-family:'Cormorant Garamond',serif;font-size:19px;color:var(--ivory);margin-top:4px;line-height:1.05}
+.mh-nav{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:22px}
+.mh-dots{display:flex;gap:7px}
+.mh-dots i{width:7px;height:7px;border-radius:50%;background:rgba(231,200,124,.3);transition:all .25s}
+.mh-dots i.on{background:var(--gold);transform:scale(1.3)}
+.mh-arrow{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--gold-line);background:rgba(7,35,25,.4);
+  display:grid;place-items:center;cursor:pointer}
+.mh-arrow svg{width:18px;height:18px;stroke:var(--gold);fill:none;stroke-width:1.8}
+
+/* chapter detail (mobile) */
+.cd-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;min-height:0;padding:6px 24px 60px;text-align:center}
+.cd-inner{max-width:560px;margin:0 auto}
+.cd-photo{width:100%;max-width:440px;margin:0 auto 26px;border-radius:8px;border:2px solid var(--gold-line);
+  box-shadow:0 24px 50px rgba(0,0,0,.5);display:block}
+.cd-k{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.cd-t{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,9vw,54px);color:var(--ivory);margin:9px 0 18px;line-height:1}
+.cd-n{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;line-height:1.5;color:var(--ivory-2)}
+.cd-link{display:none;align-items:center;gap:9px;margin-top:26px;color:var(--gold);text-decoration:none;
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;border:1px solid var(--gold-line);border-radius:40px;padding:12px 22px}
+
+@media (max-width:820px){
+  body{overflow-y:auto;overflow-x:hidden}
+  .screen{height:auto;min-height:100svh;overflow:visible}
+  .scene,.edge,.progress,.atmos,.vign{display:none!important}
+  #mhome{display:block}
+  .nav{position:fixed;background:linear-gradient(180deg,rgba(5,26,18,.92),rgba(5,26,18,0))}
+  .nav-in{padding-block:10px}
+  .brand img{height:44px}
+  .brand .nm{font-size:13px}
+}
+
 /* ===== overlays: program viewer + gallery (shared chrome) ===== */
 .ov{position:fixed;inset:0;z-index:90;display:none;flex-direction:column;
   background:radial-gradient(130% 100% at 50% 0,#0A3626 0%,#06231A 48%,#041A13 100%);
@@ -326,6 +397,40 @@ img{display:block;max-width:100%}
     <span class="segs" id="segs"></span>
     <span class="nm" id="pname"></span>
   </div>
+
+  <!-- ===== mobile cinematic home ===== -->
+  <div id="mhome">
+    <section class="mh-hero">
+      <div class="mh-glow"></div>
+      <img class="mh-portrait" src="her.png" alt="Pastor Rhoda Olubunmi Bajomo-Akindele">
+      <div class="mh-copy">
+        <div class="mh-kicker">Faith in Full Bloom</div>
+        <h1 class="mh-cel">A Celebration<br>of Life</h1>
+        <p class="mh-sub">A life of faith, service, and enduring impact.</p>
+      </div>
+      <div class="mh-scrim"></div>
+      <div class="mh-actions">
+        <button class="mh-btn gold" id="mhProg">
+          <svg viewBox="0 0 24 24"><path d="M4 5.5A2 2 0 016 4h5v15H6a2 2 0 00-2 2V5.5zM20 5.5A2 2 0 0018 4h-5v15h5a2 2 0 012 2V5.5z"/></svg>
+          Experience the Celebration</button>
+        <button class="mh-btn out" id="mhGal">A Life in Pictures</button>
+        <button class="mh-explore" id="mhExplore">Explore the Story
+          <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
+      </div>
+    </section>
+    <section class="mh-chapters" id="mhChapters">
+      <div class="mh-ch-head">
+        <div class="mh-ch-k">Her Journey</div>
+        <div class="mh-ch-t">Explore the Story</div>
+      </div>
+      <div class="mh-track" id="mhTrack"></div>
+      <div class="mh-nav">
+        <button class="mh-arrow" id="mhPrev" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <span class="mh-dots" id="mhDots"></span>
+        <button class="mh-arrow" id="mhNext" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+    </section>
+  </div>
 </div>
 
 <!-- ===== Program viewer ===== -->
@@ -379,6 +484,24 @@ img{display:block;max-width:100%}
     <button class="ov-arrow r" id="lbNext" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
   </div>
   <div class="pv-foot"></div>
+</div>
+
+<!-- ===== Chapter detail (mobile) ===== -->
+<div class="ov" id="cd" aria-hidden="true" aria-label="Chapter">
+  <div class="ov-top">
+    <div class="ov-brand"><img src="logo.png" alt="">
+      <span><span class="k">A Celebration of Life</span><br><span class="t" id="cdHead">&nbsp;</span></span></div>
+    <button class="ov-close" id="cdClose" aria-label="Close" style="margin-left:auto">&times;</button>
+  </div>
+  <div class="cd-body">
+    <div class="cd-inner">
+      <img class="cd-photo" id="cdImg" alt="">
+      <div class="cd-k" id="cdK"></div>
+      <h2 class="cd-t" id="cdT"></h2>
+      <p class="cd-n" id="cdN"></p>
+      <a class="cd-link" id="cdLink" href="https://www.forevermissed.com/rhoda-olubunmi-bajomo-akindele/about" target="_blank" rel="noopener">Visit Forever Missed &rarr;</a>
+    </div>
+  </div>
 </div>
 
 <!-- ===== Music (Spotify gospel playlist) ===== -->
@@ -588,6 +711,45 @@ function openLightbox(k){ lbGo(k); openOverlay(lb); }
 document.getElementById('lbClose').onclick=function(){closeOverlay(lb)};
 document.getElementById('lbPrev').onclick=function(){lbGo(lbi-1)};
 document.getElementById('lbNext').onclick=function(){lbGo(lbi+1)};
+
+/* ===== mobile home: cards, carousel, chapter detail ===== */
+var MCH=[1,2,3,4,5,6];
+var mhTrack=document.getElementById('mhTrack'), mhDots=document.getElementById('mhDots');
+(function(){
+  var h='';
+  MCH.forEach(function(i){ var c=C[i];
+    h+='<figure class="mh-card" data-ch="'+i+'"><img src="'+c.subj+'" alt="'+c.name+'" loading="lazy">'+
+       '<figcaption class="cap"><div class="cl">'+c.label+'</div><div class="ct">'+c.name+'</div></figcaption></figure>';
+  });
+  mhTrack.innerHTML=h;
+  var dh=''; MCH.forEach(function(_,k){ dh+='<i'+(k===0?' class="on"':'')+'></i>'; }); mhDots.innerHTML=dh;
+  [].slice.call(mhTrack.children).forEach(function(card){ card.onclick=function(){ mcAction(+card.getAttribute('data-ch')); }; });
+  function syncDots(){ var cw=mhTrack.firstChild?mhTrack.firstChild.offsetWidth+14:1;
+    var k=Math.round(mhTrack.scrollLeft/cw);
+    [].slice.call(mhDots.children).forEach(function(d,di){ d.classList.toggle('on',di===Math.min(Math.max(k,0),MCH.length-1)); });
+  }
+  mhTrack.addEventListener('scroll',syncDots,{passive:true});
+  document.getElementById('mhPrev').onclick=function(){ mhTrack.scrollBy({left:-(mhTrack.firstChild.offsetWidth+14),behavior:'smooth'}); };
+  document.getElementById('mhNext').onclick=function(){ mhTrack.scrollBy({left:(mhTrack.firstChild.offsetWidth+14),behavior:'smooth'}); };
+})();
+function mcAction(i){ if(i===4) openProgram(); else if(i===5) openGallery(); else openChapter(i); }
+document.getElementById('mhProg').onclick=function(){ openProgram(); };
+document.getElementById('mhGal').onclick=function(){ openGallery(); };
+document.getElementById('mhExplore').onclick=function(){ document.getElementById('mhChapters').scrollIntoView({behavior:'smooth'}); };
+
+/* chapter detail overlay */
+var cd=document.getElementById('cd'), cdLink=document.getElementById('cdLink');
+function openChapter(i){ var c=C[i];
+  document.getElementById('cdImg').src=c.subj;
+  document.getElementById('cdImg').alt=c.name;
+  document.getElementById('cdHead').textContent=c.t2;
+  document.getElementById('cdK').textContent=c.label;
+  document.getElementById('cdT').textContent=c.name;
+  document.getElementById('cdN').textContent=c.narr;
+  cdLink.style.display=(i===6)?'inline-flex':'none';
+  openOverlay(cd); cd.querySelector('.cd-body').scrollTop=0;
+}
+document.getElementById('cdClose').onclick=function(){ closeOverlay(cd); };
 
 render(0); resetAuto();
 </script>
