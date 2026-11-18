@@ -414,6 +414,7 @@ button.cd-link{background:none;font-family:inherit;cursor:pointer}
 .lv-go{padding:15px 22px}
 .lv-rem a{min-height:44px;display:inline-flex;align-items:center;text-transform:uppercase;letter-spacing:.12em;font-size:10.5px}
 .lv-inv{display:inline-block;margin-top:12px;background:none;border:none;padding:6px 0;color:var(--gold);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;cursor:pointer;text-decoration:underline;text-decoration-color:var(--gold-line);text-underline-offset:4px}
+.lv-soon{opacity:.85;border-style:dashed}
 .lv-local{font-family:'Montserrat',sans-serif;font-size:12px;color:var(--gold);margin-top:6px;letter-spacing:.04em}
 .lv-badge.now{background:#C93A3F}
 .cd-link{min-height:44px}
@@ -519,7 +520,7 @@ button.cd-link{background:none;font-family:inherit;cursor:pointer}
       <div class="mh-actions">
         <button class="mh-btn gold" id="mhProg">
           <svg viewBox="0 0 24 24"><path d="M4 5.5A2 2 0 016 4h5v15H6a2 2 0 00-2 2V5.5zM20 5.5A2 2 0 0018 4h-5v15h5a2 2 0 012 2V5.5z"/></svg>
-          Experience the Celebration</button>
+          View the Program</button>
         <button class="mh-btn out" id="mhGal">A Life in Pictures</button>
         <button class="mh-inv" id="mhInv" type="button">Service times &amp; invitation</button>
         <button class="mh-explore" id="mhExplore">Explore the Story
@@ -606,6 +607,7 @@ button.cd-link{background:none;font-family:inherit;cursor:pointer}
     <h2 class="lv-t">Celebrate with us, wherever you are</h2>
     <p class="lv-s">The services will be streamed live for family and friends around the world. All times are Eastern Time (Washington DC).</p>
     <div id="lvList"></div>
+    <div class="lv-card lv-soon"><div class="lv-row"><span class="lv-day">Sunday, 22 November</span></div><div class="lv-name">Service of Thanksgiving</div><div class="lv-meta">11:00 AM to 1:30 PM ET&ensp;|&ensp;RCCG Worship Center<br>Streaming details will be shared here if this service is broadcast.</div></div>
     <p class="lv-note">Each stream opens in a new tab and stays available to watch afterwards. Calendar reminders alert you 1 hour and 15 minutes before, in your own time zone.</p>
   </div></div>
 </div>
@@ -913,7 +915,7 @@ document.getElementById('cdClose').onclick=function(){ closeOverlay(cd); };
 var LIVE=[
  {name:'Service of Songs',day:'Thursday, 19 November',meta:'7:00 to 9:00 PM ET&ensp;|&ensp;Jesus House DC',url:'https://evt.live/roa-service-of-songs',ics:'cal/service-of-songs.ics',gt:'Livestream: Service of Songs for Pastor Rhoda Olubunmi Bajomo-Akindele',gd:'20261120T000000Z/20261120T020000Z',
   s:Date.UTC(2026,10,20,0,0),e:Date.UTC(2026,10,20,2,0)},
- {name:'Funeral and Celebration of Life',day:'Saturday, 21 November',meta:'Stream begins 10:00 AM ET with the viewing<br>Funeral Service 11:00 AM to 1:00 PM ET&ensp;|&ensp;RCCG Victory Temple<br>Reception from 2:00 PM ET&ensp;|&ensp;Omny Banquet Hall',url:'https://evt.live/roa-funeral-celebration',ics:'cal/funeral-celebration.ics',gt:'Livestream: Funeral and Celebration of Life for Pastor Rhoda Olubunmi Bajomo-Akindele',gd:'20261121T150000Z/20261121T180000Z',
+ {name:'Funeral and Celebration of Life',day:'Saturday, 21 November',meta:'Stream begins 10:00 AM ET with the viewing<br>Funeral Service 11:00 AM to 1:00 PM ET&ensp;|&ensp;RCCG Victory Temple<br>Reception 2:00 to 6:00 PM ET&ensp;|&ensp;Omny Banquet Hall',url:'https://evt.live/roa-funeral-celebration',ics:'cal/funeral-celebration.ics',gt:'Livestream: Funeral and Celebration of Life for Pastor Rhoda Olubunmi Bajomo-Akindele',gd:'20261121T150000Z/20261121T180000Z',
   s:Date.UTC(2026,10,21,15,0),e:Date.UTC(2026,10,21,23,0)}
 ];
 var liveOv=document.getElementById('live'), lvList=document.getElementById('lvList'), liveBtn=document.getElementById('liveBtn');
