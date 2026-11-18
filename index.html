@@ -63,8 +63,9 @@ img{display:block;max-width:100%}
 /* ---- nav ---- */
 .nav{position:absolute;top:0;left:0;right:0;z-index:30}
 .nav-in{max-width:1360px;margin:0 auto;display:flex;align-items:center;gap:18px;padding-block:18px}
-.brand{display:flex;align-items:center;gap:14px;text-decoration:none;min-width:0}
-.brand img{height:52px;width:auto;filter:drop-shadow(0 5px 10px rgba(0,0,0,.5))}
+.brand{display:flex;align-items:center;gap:14px;text-decoration:none;min-width:0;flex-shrink:0}
+.brand img{height:52px;width:auto;flex:none;object-fit:contain;filter:drop-shadow(0 5px 10px rgba(0,0,0,.5))}
+.brand .nm,.navlinks button{white-space:nowrap}
 .brand .pre{font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);font-weight:600}
 .brand .nm{font-family:'Cormorant Garamond',serif;font-size:19px;color:var(--ivory);font-weight:600;line-height:1.05}
 .navlinks{display:flex;gap:24px;margin-left:auto;align-items:center}
@@ -310,6 +311,19 @@ img{display:block;max-width:100%}
   .brand img{height:46px}
   .brand span{display:none}
 }
+@media (max-width:380px){ .livebtn .lw{display:none} .livebtn{padding:0 13px} .nav-actions{gap:8px} }
+@media (min-width:821px) and (max-width:1340px){
+  .navlinks{gap:16px}
+  .navlinks button{letter-spacing:.12em;font-size:10.5px}
+  .livebtn{padding:0 13px}
+}
+@media (min-width:821px) and (max-width:1200px){ .brand .pre,.brand .nm{display:none} .nav-actions{gap:8px} }
+/* keep the chapter photo clear of the caption on shorter laptop screens */
+@media (min-width:901px){
+  .subj-frame{--ph:clamp(200px,calc(100vh - 450px),460px);top:max(96px,calc((100vh - 330px - var(--ph)) / 2 + 40px));transform:translateX(-50%)}
+  .subj-frame img{height:var(--ph)}
+}
+.livebtn:focus-visible,.icbtn:focus-visible,.cbtn:focus-visible,.ov-close:focus-visible,.lv-card a:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 
 /* ===== overlays: program viewer + gallery (shared chrome) ===== */
 .ov{position:fixed;inset:0;z-index:90;display:none;flex-direction:column;
@@ -421,7 +435,7 @@ button.cd-link{background:none;font-family:inherit;cursor:pointer}
         <button data-go="6">Legacy</button>
       </nav>
       <div class="nav-actions">
-        <button class="livebtn" id="liveBtn" aria-label="Watch the services live"><i class="ldot"></i><span>Watch Live</span></button>
+        <button class="livebtn" id="liveBtn" aria-label="Watch the services live"><i class="ldot"></i><span><span class="lw">Watch </span>Live</span></button>
         <button class="icbtn share" id="share" aria-label="Share this memorial">
           <svg viewBox="0 0 24 24"><path d="M12 14.5V4"/><path d="M8.4 7.6 12 4l3.6 3.6"/><path d="M6 11v7.5a.9.9 0 0 0 .9.9h10.2a.9.9 0 0 0 .9-.9V11"/></svg>
         </button>
@@ -660,7 +674,7 @@ function render(i){
   var ag=fore.querySelector('.cbtn[data-act="gal"]'); if(ag) ag.onclick=function(){openGallery();};
   var ai=fore.querySelector('.cbtn[data-act="inv"]'); if(ai) ai.onclick=function(){openInvite();};
   var al=fore.querySelector('.cbtn[data-act="live"]'); if(al) al.onclick=function(){openLive();};
-  pnum.textContent=(i===0?'—':('0'+(i)).slice(-2)+' / 0'+(n-1));
+  pnum.textContent=('0'+(i+1)).slice(-2)+' / 0'+n;
   pname.textContent=c.open?'':c.name;
   segI.forEach(function(s,k){s.classList.toggle('on',k===i)});
   document.querySelectorAll('.navlinks button[data-go]').forEach(function(x){x.classList.toggle('active',+x.getAttribute('data-go')===i)});
@@ -739,10 +753,23 @@ function closeMenu(){}
 // ===== overlays: program viewer, gallery, lightbox =====
 var overlayOpen=null;
 function pad2(x){return ('0'+x).slice(-2);}
-function openOverlay(el){ el.classList.add('open'); requestAnimationFrame(function(){el.classList.add('show')});
+var ovStack=[];
+function openOverlay(el){ var i=ovStack.indexOf(el); if(i>-1) ovStack.splice(i,1);
+  el._ret=el._ret||document.activeElement; ovStack.push(el); el.style.zIndex=90+ovStack.length;
+  el.setAttribute('role','dialog'); el.setAttribute('aria-modal','true');
+  el.classList.add('open'); requestAnimationFrame(function(){el.classList.add('show'); var c=el.querySelector('.ov-close'); if(c) try{c.focus({preventScroll:true})}catch(e){}});
   el.setAttribute('aria-hidden','false'); overlayOpen=el; }
 function closeOverlay(el){ el.classList.remove('show'); el.setAttribute('aria-hidden','true');
-  setTimeout(function(){el.classList.remove('open')},400); if(overlayOpen===el)overlayOpen=null; }
+  setTimeout(function(){ if(ovStack.indexOf(el)<0) el.classList.remove('open') },400);
+  var i=ovStack.indexOf(el); if(i>-1) ovStack.splice(i,1);
+  overlayOpen=ovStack.length?ovStack[ovStack.length-1]:null;
+  var r=el._ret; el._ret=null; if(r&&r.focus&&document.contains(r)) try{r.focus({preventScroll:true})}catch(e){} }
+document.addEventListener('keydown',function(e){ if(e.key!=='Tab'||!overlayOpen) return;
+  var f=[].slice.call(overlayOpen.querySelectorAll('a[href],button:not([disabled]),[tabindex]:not([tabindex="-1"])')).filter(function(x){return x.offsetParent!==null});
+  if(!f.length) return; var a=f[0], z=f[f.length-1];
+  if(!overlayOpen.contains(document.activeElement)){ e.preventDefault(); a.focus(); }
+  else if(e.shiftKey&&document.activeElement===a){ e.preventDefault(); z.focus(); }
+  else if(!e.shiftKey&&document.activeElement===z){ e.preventDefault(); a.focus(); } },true);
 
 /* program viewer */
 var PROG_N=26, pvi=0;
@@ -846,7 +873,7 @@ function renderLive(){ var now=Date.now(), h='', nextDone=false, anyNow=false;
     else if(st==='next'&&!nextDone){ b='<span class="lv-badge next">Up next</span>'; nextDone=true; }
     else if(st==='done'){ b='<span class="lv-badge done">On demand</span>'; }
     var g='https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(ev.gt)+'&dates='+ev.gd+'&details='+encodeURIComponent('Watch live: '+ev.url+'\nMore: https://rhodabajomoakindele.com')+'&location='+encodeURIComponent(ev.url);
-    var rem=(st==='done')?'':'<div class="lv-rem"><span class="lv-rk">Remind me</span>'+
+    var rem=(st!=='next')?'':'<div class="lv-rem"><span class="lv-rk">Remind me</span>'+
        '<a href="'+ev.ics+'" download>Add to calendar</a>'+
        '<a href="'+g+'" target="_blank" rel="noopener">Google Calendar</a>'+
        '<a href="'+ev.url+'" target="_blank" rel="noopener">Email or text reminder</a></div>';
@@ -856,7 +883,7 @@ function renderLive(){ var now=Date.now(), h='', nextDone=false, anyNow=false;
   });
   lvList.innerHTML=h; liveBtn.classList.toggle('on',anyNow);
 }
-function openLive(){ closeMenu(); if(overlayOpen&&overlayOpen!==liveOv) closeOverlay(overlayOpen); renderLive(); openOverlay(liveOv); liveOv.querySelector('.lv-body').scrollTop=0; }
+function openLive(){ closeMenu(); renderLive(); openOverlay(liveOv); liveOv.querySelector('.lv-body').scrollTop=0; }
 liveBtn.onclick=openLive;
 document.getElementById('liveClose').onclick=function(){ closeOverlay(liveOv); };
 document.getElementById('cdLive').onclick=function(){ openLive(); };
@@ -864,7 +891,7 @@ renderLive(); setInterval(renderLive,60000);
 
 /* invitation viewer */
 var inv=document.getElementById('inv'), invImg=document.getElementById('invImg');
-function openInvite(){ closeMenu(); if(overlayOpen&&overlayOpen!==inv) closeOverlay(overlayOpen);
+function openInvite(){ closeMenu(); 
   if(!invImg.src){ invImg.onload=function(){invImg.classList.add('in')}; invImg.src='invite.jpg'; }
   openOverlay(inv); inv.querySelector('.inv-stage').scrollTop=0; }
 document.getElementById('invClose').onclick=function(){ closeOverlay(inv); };

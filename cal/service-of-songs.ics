@@ -8,18 +8,23 @@ UID:roa-service-of-songs@rhodabajomoakindele.com
 DTSTAMP:20261118T170000Z
 DTSTART:20261120T000000Z
 DTEND:20261120T020000Z
-SUMMARY:Livestream: Service of Songs for Pastor Rhoda Olubunmi Bajomo-Akindele
-DESCRIPTION:Service of Songs\, 7:00 to 9:00 PM Eastern\, Jesus House DC.\n\nWatch live: https://evt.live/roa-service-of-songs\nMore: https://rhodabajomoakindele.com
+SUMMARY:Livestream: Service of Songs for Pastor Rhoda Olubunmi Bajomo-Akind
+ ele
+DESCRIPTION:Service of Songs\, 7:00 to 9:00 PM Eastern\, Jesus House DC.\n\
+ nWatch live: https://evt.live/roa-service-of-songs\nMore: https://rhodabaj
+ omoakindele.com
 URL:https://evt.live/roa-service-of-songs
 LOCATION:https://evt.live/roa-service-of-songs
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:Livestream: Service of Songs for Pastor Rhoda Olubunmi Bajomo-Akindele begins in 1 hour
+DESCRIPTION:Livestream: Service of Songs for Pastor Rhoda Olubunmi Bajomo-A
+ kindele begins in 1 hour
 TRIGGER:-PT1H
 END:VALARM
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:Livestream: Service of Songs for Pastor Rhoda Olubunmi Bajomo-Akindele begins in 15 minutes
+DESCRIPTION:Livestream: Service of Songs for Pastor Rhoda Olubunmi Bajomo-A
+ kindele begins in 15 minutes
 TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
