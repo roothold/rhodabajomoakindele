@@ -9,25 +9,25 @@
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#06251B">
 <meta name="author" content="The Akindele Family">
-<link rel="icon" href="/favicon.ico?v=2" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=2">
-<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png?v=2">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<link rel="icon" href="/favicon.ico?v=3" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=3">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png?v=3">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Faith in Full Bloom">
 <meta property="og:title" content="A Celebration of Life | Pastor Rhoda Olubunmi Bajomo-Akindele">
 <meta property="og:description" content="Faith in Full Bloom: a Celebration of Life for Pastor Rhoda Olubunmi Bajomo-Akindele (1953 to 2026). Her story, tributes, order of service, and keepsake program.">
 <meta property="og:url" content="https://rhodabajomoakindele.com/">
-<meta property="og:image" content="https://rhodabajomoakindele.com/og-image.jpg?v=2">
+<meta property="og:image" content="https://rhodabajomoakindele.com/og-image.jpg?v=3">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Pastor Rhoda Olubunmi Bajomo-Akindele, A Celebration of Life">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="A Celebration of Life | Pastor Rhoda Olubunmi Bajomo-Akindele">
 <meta name="twitter:description" content="Faith in Full Bloom: a Celebration of Life for Pastor Rhoda Olubunmi Bajomo-Akindele.">
-<meta name="twitter:image" content="https://rhodabajomoakindele.com/og-image.jpg?v=2">
+<meta name="twitter:image" content="https://rhodabajomoakindele.com/og-image.jpg?v=3">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Person","name":"Pastor Rhoda Olubunmi Bajomo-Akindele","honorificPrefix":"Pastor","givenName":"Rhoda","familyName":"Bajomo-Akindele","gender":"Female","birthDate":"1953-10-30","deathDate":"2026-10-29","description":"Pastor, wife, mother, and woman of faith. A Celebration of Life, Faith in Full Bloom.","url":"https://rhodabajomoakindele.com/","image":"https://rhodabajomoakindele.com/og-image.jpg?v=2"}
+{"@context":"https://schema.org","@type":"Person","name":"Pastor Rhoda Olubunmi Bajomo-Akindele","honorificPrefix":"Pastor","givenName":"Rhoda","familyName":"Bajomo-Akindele","gender":"Female","birthDate":"1953-10-30","deathDate":"2026-10-29","description":"Pastor, wife, mother, and woman of faith. A Celebration of Life, Faith in Full Bloom.","url":"https://rhodabajomoakindele.com/","image":"https://rhodabajomoakindele.com/og-image.jpg?v=3"}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -301,7 +301,8 @@ img{display:block;max-width:100%}
 .cd-link{display:none;align-items:center;gap:9px;margin-top:26px;color:var(--gold);text-decoration:none;
   font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;border:1px solid var(--gold-line);border-radius:40px;padding:12px 22px}
 
-@media (max-width:820px){
+@media (max-width:820px), (max-height:520px) and (orientation:landscape) and (max-width:1000px), (max-width:1100px) and (orientation:portrait) and (min-height:1100px){
+  .navlinks{display:none!important}
   body{overflow-y:auto;overflow-x:hidden}
   .screen{height:auto;min-height:100svh;overflow:visible}
   .scene,.edge,.progress,.atmos,.vign{display:none!important}
@@ -311,6 +312,29 @@ img{display:block;max-width:100%}
   .brand img{height:46px}
   .brand span{display:none}
 }
+@media (max-height:520px) and (orientation:landscape) and (max-width:1000px){
+  .mh-hero{min-height:100svh;display:grid;grid-template-columns:44% 1fr;grid-template-rows:1fr auto;align-items:center;column-gap:8px;
+    padding:64px max(20px,env(safe-area-inset-right,0px)) 14px max(20px,env(safe-area-inset-left,0px))}
+  .mh-glow{left:24%;top:55%;width:60%;height:90%}
+  .mh-portrait{position:relative;left:auto;bottom:auto;transform:none;grid-column:1;grid-row:1/3;align-self:end;justify-self:center;height:calc(100svh - 70px);margin-bottom:-14px}
+  .mh-copy{position:relative;grid-column:2;grid-row:1;padding:0;align-self:end}
+  .mh-scrim{display:none}
+  .mh-actions{position:relative;grid-column:2;grid-row:2;padding:12px 0 0}
+  .mh-btn{padding:12px 16px}
+  .mh-explore{display:none}
+  .mh-cel{font-size:clamp(26px,11svh,52px)}
+  .mh-actions{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:10px}
+  .mh-actions .mh-btn{width:auto;flex:1 1 220px;max-width:300px}
+  .mh-inv{flex-basis:100%;padding:8px}
+}
+@media (max-height:420px) and (orientation:landscape) and (max-width:1000px){
+  .mh-kicker{display:none}
+  .mh-name{font-size:14px;margin-top:4px}
+  .mh-hero{padding-top:58px}
+  .mh-btn{padding:11px 12px;font-size:11px;letter-spacing:.12em}
+  .mh-actions .mh-btn{flex-basis:180px}
+}
+@media (max-width:360px){ .mh-portrait{height:63svh} .mh-cel{font-size:29px} .mh-copy{padding-top:64px} .mh-kicker{margin-bottom:4px} .mh-name{font-size:15px;margin-top:4px} .mh-btn{font-size:11px;letter-spacing:.11em;padding:15px 12px} }
 @media (max-width:380px){ .livebtn .lw{display:none} .livebtn{padding:0 13px} .nav-actions{gap:8px} }
 @media (min-width:821px) and (max-width:1340px){
   .navlinks{gap:16px}
@@ -380,6 +404,25 @@ button.cd-link{background:none;font-family:inherit;cursor:pointer}
   font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:var(--ivory);
   opacity:0;transform:translateY(8px);transition:all .3s ease}
 .gal-cell:hover .gal-cap{opacity:1;transform:none}
+.mh-inv{background:none;border:none;color:var(--ivory);font-family:'Montserrat',sans-serif;font-weight:600;font-size:12px;letter-spacing:.12em;
+  text-transform:uppercase;cursor:pointer;padding:12px 10px;min-height:44px;text-decoration:underline;text-decoration-color:var(--gold-line);text-underline-offset:5px}
+@media (max-width:820px){
+  .mh-card .cl,.ov-brand .k,.mh-kicker,.mh-ch-k,.lv-rk,.lv-badge,.lv-day{font-size:12px;letter-spacing:.18em}
+  .mh-name{font-size:17px}
+  .livebtn{height:44px}
+}
+.lv-go{padding:15px 22px}
+.lv-rem a{min-height:44px;display:inline-flex;align-items:center;text-transform:uppercase;letter-spacing:.12em;font-size:10.5px}
+.lv-inv{display:inline-block;margin-top:12px;background:none;border:none;padding:6px 0;color:var(--gold);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;cursor:pointer;text-decoration:underline;text-decoration-color:var(--gold-line);text-underline-offset:4px}
+.lv-local{font-family:'Montserrat',sans-serif;font-size:12px;color:var(--gold);margin-top:6px;letter-spacing:.04em}
+.lv-badge.now{background:#C93A3F}
+.cd-link{min-height:44px}
+.gal-cell:focus-visible,.mh-card:focus-visible,.edge:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.cel-name{display:none}
+@media (min-width:821px) and (max-width:1200px){ .cel-name{display:block;font-family:'Cormorant Garamond',serif;font-size:22px;line-height:1.2;color:var(--ivory);margin:0 0 14px;max-width:min(30vw,340px);text-shadow:0 2px 14px rgba(4,20,14,.9)} }
+@media (min-width:901px){ .scene.opening .fore-in{padding-right:84px} }
+@media (min-width:901px){ .cel-line{font-size:clamp(36px,3.6vw,62px);max-width:min(32vw,540px);text-shadow:0 2px 18px rgba(4,20,14,.85)} }
+@media (prefers-reduced-motion:reduce){ .mh-explore svg{animation:none} }
 @media (hover:none){.gal-cap{opacity:1;transform:none;font-size:15px;padding-top:28px}}
 
 /* music panel (Spotify) */
@@ -447,8 +490,8 @@ button.cd-link{background:none;font-family:inherit;cursor:pointer}
     </div>
   </header>
 
-  <div class="edge l" id="prev" role="button" aria-label="Previous chapter"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></div>
-  <div class="edge r" id="next" role="button" aria-label="Next chapter"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></div>
+  <div class="edge l" id="prev" role="button" tabindex="0" aria-label="Previous chapter"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></div>
+  <div class="edge r" id="next" role="button" tabindex="0" aria-label="Next chapter"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></div>
 
   <div class="scene" id="scene">
     <div class="plane p-title"><div class="stitle" id="stitle"></div></div>
@@ -466,7 +509,7 @@ button.cd-link{background:none;font-family:inherit;cursor:pointer}
   <div id="mhome">
     <section class="mh-hero">
       <div class="mh-glow"></div>
-      <img class="mh-portrait" src="her.png" alt="Pastor Rhoda Olubunmi Bajomo-Akindele">
+      <img class="mh-portrait" src="her.webp" fetchpriority="high" alt="Pastor Rhoda Olubunmi Bajomo-Akindele">
       <div class="mh-copy">
         <div class="mh-kicker">Faith in Full Bloom</div>
         <h1 class="mh-cel">A Celebration<br>of Life</h1>
@@ -478,6 +521,7 @@ button.cd-link{background:none;font-family:inherit;cursor:pointer}
           <svg viewBox="0 0 24 24"><path d="M4 5.5A2 2 0 016 4h5v15H6a2 2 0 00-2 2V5.5zM20 5.5A2 2 0 0018 4h-5v15h5a2 2 0 012 2V5.5z"/></svg>
           Experience the Celebration</button>
         <button class="mh-btn out" id="mhGal">A Life in Pictures</button>
+        <button class="mh-inv" id="mhInv" type="button">Service times &amp; invitation</button>
         <button class="mh-explore" id="mhExplore">Explore the Story
           <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
       </div>
@@ -560,9 +604,9 @@ button.cd-link{background:none;font-family:inherit;cursor:pointer}
   <div class="lv-body"><div class="lv-inner">
     <div class="lv-k">Join from anywhere</div>
     <h2 class="lv-t">Celebrate with us, wherever you are</h2>
-    <p class="lv-s">The services will be streamed live for family and friends around the world.</p>
+    <p class="lv-s">The services will be streamed live for family and friends around the world. All times are Eastern Time (Washington DC).</p>
     <div id="lvList"></div>
-    <p class="lv-note">All times are Eastern Time (Washington DC). Each stream opens in a new tab and stays available to watch afterwards. Calendar reminders alert you 1 hour and 15 minutes before.</p>
+    <p class="lv-note">Each stream opens in a new tab and stays available to watch afterwards. Calendar reminders alert you 1 hour and 15 minutes before, in your own time zone.</p>
   </div></div>
 </div>
 
@@ -618,7 +662,7 @@ button.cd-link{background:none;font-family:inherit;cursor:pointer}
 <script>
 var C=[
  {open:true, t1:'Faith in', t2:'Full Bloom', label:'A Celebration of Life', name:'Faith in Full Bloom',
-  narr:'A life of faith, service, and enduring impact.', subj:'her.png', cut:true,
+  narr:'A life of faith, service, and enduring impact.', subj:'her.webp', cut:true,
   cta:{t:'View the Program', prog:true}},
  {t1:'Chapter 02', t2:'Her Story', label:'1953 · Ibadan', name:'Her Story',
   narr:'From Ibadan to a life of faith, family, and ministry, she lived with purpose, excellence, and an unwavering trust in God.', subj:'herstory_solo.jpg'},
@@ -655,7 +699,7 @@ function render(i){
     subj.className='subj-frame'; subj.innerHTML='<img src="'+c.subj+'" alt="'+c.name+'">';
   }
   var fh='';
-  if(c.open){ fh+='<div class="cel-line">'+c.label+'</div>'; } else { fh+='<div class="clabel">'+c.label+'</div>'; }
+  if(c.open){ fh+='<div class="cel-line">'+c.label+'</div><div class="cel-name">Pastor Rhoda Olubunmi<br>Bajomo-Akindele</div>'; } else { fh+='<div class="clabel">'+c.label+'</div>'; }
   fh+='<p class="cnarr">'+c.narr+'</p>';
   if(c.cta){
     var inner='<span class="pb">'+(c.cta.play
@@ -711,7 +755,7 @@ window.addEventListener('pointerup',function(e){ if(sx===null)return; var dx=e.c
 
 // parallax depth
 var pt=scene.querySelector('.p-title'), ps=scene.querySelector('.p-subj'), pf=scene.querySelector('.p-fore');
-C.forEach(function(c){var im=new Image(); im.src=c.subj;}); // preload for smooth scene changes
+if(!window.matchMedia('(max-width:820px), (max-height:520px) and (orientation:landscape)').matches){ C.forEach(function(c){var im=new Image(); im.src=c.subj;}); } // preload desktop scenes only
 var txp=0,typ=0,cxp=0,cyp=0, reduceM=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 window.addEventListener('pointermove',function(e){
   if(window.innerWidth<900||reduceM) return;
@@ -740,11 +784,13 @@ function loadMusic(){ if(musicLoaded)return;
 }
 function toggleMusic(on){ musicOpen=(on==null)?!musicOpen:on;
   if(musicOpen) loadMusic();
-  music.classList.toggle('open',musicOpen); music.setAttribute('aria-hidden',musicOpen?'false':'true');
+  music.classList.toggle('open',musicOpen); music.setAttribute('aria-hidden',musicOpen?'false':'true'); music.inert=!musicOpen;
   sbtn.classList.toggle('off',!musicOpen);
   var mS=document.getElementById('menuSound'); if(mS) mS.textContent=musicOpen?'Hide Music':'Play Music';
 }
 sbtn.onclick=function(){ toggleMusic(); };
+try{ music.inert=true; }catch(e){}
+window.addEventListener('keydown',function(e){ if(e.key==='Escape'&&musicOpen&&!overlayOpen) toggleMusic(false); });
 var musicX=document.getElementById('musicX'); if(musicX) musicX.onclick=function(){ toggleMusic(false); };
 
 // slide-in menu
@@ -754,16 +800,20 @@ function closeMenu(){}
 var overlayOpen=null;
 function pad2(x){return ('0'+x).slice(-2);}
 var ovStack=[];
+var popSkip=0;
 function openOverlay(el){ var i=ovStack.indexOf(el); if(i>-1) ovStack.splice(i,1);
+  else { try{ history.pushState({ov:el.id},''); }catch(e){} }
   el._ret=el._ret||document.activeElement; ovStack.push(el); el.style.zIndex=90+ovStack.length;
   el.setAttribute('role','dialog'); el.setAttribute('aria-modal','true');
   el.classList.add('open'); requestAnimationFrame(function(){el.classList.add('show'); var c=el.querySelector('.ov-close'); if(c) try{c.focus({preventScroll:true})}catch(e){}});
   el.setAttribute('aria-hidden','false'); overlayOpen=el; }
-function closeOverlay(el){ el.classList.remove('show'); el.setAttribute('aria-hidden','true');
+function closeOverlay(el,fromPop){ if(!fromPop&&ovStack.indexOf(el)>-1){ try{ if(history.state&&history.state.ov){ popSkip++; history.back(); } }catch(e){} }
+  el.classList.remove('show'); el.setAttribute('aria-hidden','true');
   setTimeout(function(){ if(ovStack.indexOf(el)<0) el.classList.remove('open') },400);
   var i=ovStack.indexOf(el); if(i>-1) ovStack.splice(i,1);
   overlayOpen=ovStack.length?ovStack[ovStack.length-1]:null;
   var r=el._ret; el._ret=null; if(r&&r.focus&&document.contains(r)) try{r.focus({preventScroll:true})}catch(e){} }
+window.addEventListener('popstate',function(){ if(popSkip>0){ popSkip--; return; } if(overlayOpen) closeOverlay(overlayOpen,true); });
 document.addEventListener('keydown',function(e){ if(e.key!=='Tab'||!overlayOpen) return;
   var f=[].slice.call(overlayOpen.querySelectorAll('a[href],button:not([disabled]),[tabindex]:not([tabindex="-1"])')).filter(function(x){return x.offsetParent!==null});
   if(!f.length) return; var a=f[0], z=f[f.length-1];
@@ -795,9 +845,9 @@ var GAL=[]; for(var gi=1;gi<=50;gi++){ GAL.push(['g-'+('0'+gi).slice(-2)+'.jpg',
 var gal=document.getElementById('gal'), galGrid=document.getElementById('galGrid'), galBuilt=false;
 function buildGal(){ if(galBuilt)return; var h='';
   GAL.forEach(function(g,i){ var cap=g[1]?'<figcaption class="gal-cap">'+g[1]+'</figcaption>':'';
-    h+='<figure class="gal-cell" data-i="'+i+'"><img src="gallery/'+g[0]+'" alt="Pastor Rhoda Olubunmi Bajomo-Akindele" loading="lazy">'+cap+'</figure>'; });
+    h+='<figure class="gal-cell" data-i="'+i+'" tabindex="0" role="button" aria-label="Open photo '+(i+1)+' of '+GAL.length+'"><img src="gallery/'+g[0]+'" alt="Photo '+(i+1)+' of '+GAL.length+' from her life" loading="lazy">'+cap+'</figure>'; });
   galGrid.innerHTML=h;
-  [].slice.call(galGrid.children).forEach(function(c){c.onclick=function(){openLightbox(+c.getAttribute('data-i'))}});
+  [].slice.call(galGrid.children).forEach(function(c){c.onclick=function(){openLightbox(+c.getAttribute('data-i'))}; c.onkeydown=function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); c.onclick(); } };});
   galBuilt=true;
 }
 function openGallery(){ closeMenu(); buildGal(); openOverlay(gal); gal.querySelector('.gal-scroll').scrollTop=0; }
@@ -809,7 +859,7 @@ var lb=document.getElementById('lb'), lbImg=document.getElementById('lbImg'),
 function lbGo(k){ k=((k%GAL.length)+GAL.length)%GAL.length; lbi=k;
   lbImg.classList.remove('in'); var img=new Image(); img.onload=function(){lbImg.src=img.src;lbImg.classList.add('in')};
   img.src='gallery/'+GAL[k][0];
-  lbImg.alt='Pastor Rhoda Olubunmi Bajomo-Akindele'; lbTitle.textContent=GAL[k][1]||'In Loving Memory'; lbCount.textContent=pad2(k+1)+' / '+pad2(GAL.length);
+  lbImg.alt='Photo '+(k+1)+' of '+GAL.length+' from her life'; lbTitle.textContent=GAL[k][1]||'In Loving Memory'; lbCount.textContent=pad2(k+1)+' / '+pad2(GAL.length);
   new Image().src='gallery/'+GAL[(k+1)%GAL.length][0];
 }
 function openLightbox(k){ lbGo(k); openOverlay(lb); }
@@ -828,7 +878,7 @@ var mhTrack=document.getElementById('mhTrack'), mhDots=document.getElementById('
   });
   mhTrack.innerHTML=h;
   var dh=''; MCH.forEach(function(_,k){ dh+='<i'+(k===0?' class="on"':'')+'></i>'; }); mhDots.innerHTML=dh;
-  [].slice.call(mhTrack.children).forEach(function(card){ card.onclick=function(){ mcAction(+card.getAttribute('data-ch')); }; });
+  [].slice.call(mhTrack.children).forEach(function(card){ card.tabIndex=0; card.setAttribute('role','button'); card.onclick=function(){ mcAction(+card.getAttribute('data-ch')); }; card.onkeydown=function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); card.onclick(); } }; });
   function syncDots(){ var cw=mhTrack.firstChild?mhTrack.firstChild.offsetWidth+14:1;
     var k=Math.round(mhTrack.scrollLeft/cw);
     [].slice.call(mhDots.children).forEach(function(d,di){ d.classList.toggle('on',di===Math.min(Math.max(k,0),MCH.length-1)); });
@@ -840,6 +890,7 @@ var mhTrack=document.getElementById('mhTrack'), mhDots=document.getElementById('
 function mcAction(i){ if(i===4) openProgram(); else if(i===5) openGallery(); else openChapter(i); }
 document.getElementById('mhProg').onclick=function(){ openProgram(); };
 document.getElementById('mhGal').onclick=function(){ openGallery(); };
+document.getElementById('mhInv').onclick=function(){ openInvite(); };
 document.getElementById('mhExplore').onclick=function(){ document.getElementById('mhChapters').scrollIntoView({behavior:'smooth'}); };
 
 /* chapter detail overlay */
@@ -860,12 +911,15 @@ document.getElementById('cdClose').onclick=function(){ closeOverlay(cd); };
 
 /* watch live */
 var LIVE=[
- {name:'Service of Songs',day:'Thursday, 19 November',meta:'7:00 to 9:00 PM&ensp;|&ensp;Jesus House DC',url:'https://evt.live/roa-service-of-songs',ics:'cal/service-of-songs.ics',gt:'Livestream: Service of Songs for Pastor Rhoda Olubunmi Bajomo-Akindele',gd:'20261120T000000Z/20261120T020000Z',
+ {name:'Service of Songs',day:'Thursday, 19 November',meta:'7:00 to 9:00 PM ET&ensp;|&ensp;Jesus House DC',url:'https://evt.live/roa-service-of-songs',ics:'cal/service-of-songs.ics',gt:'Livestream: Service of Songs for Pastor Rhoda Olubunmi Bajomo-Akindele',gd:'20261120T000000Z/20261120T020000Z',
   s:Date.UTC(2026,10,20,0,0),e:Date.UTC(2026,10,20,2,0)},
- {name:'Funeral and Celebration of Life',day:'Saturday, 21 November',meta:'Stream begins 10:00 AM with the viewing<br>Funeral Service 11:00 AM to 1:00 PM&ensp;|&ensp;RCCG Victory Temple<br>Reception from 2:00 PM&ensp;|&ensp;Omny Banquet Hall',url:'https://evt.live/roa-funeral-celebration',ics:'cal/funeral-celebration.ics',gt:'Livestream: Funeral and Celebration of Life for Pastor Rhoda Olubunmi Bajomo-Akindele',gd:'20261121T150000Z/20261121T180000Z',
+ {name:'Funeral and Celebration of Life',day:'Saturday, 21 November',meta:'Stream begins 10:00 AM ET with the viewing<br>Funeral Service 11:00 AM to 1:00 PM ET&ensp;|&ensp;RCCG Victory Temple<br>Reception from 2:00 PM ET&ensp;|&ensp;Omny Banquet Hall',url:'https://evt.live/roa-funeral-celebration',ics:'cal/funeral-celebration.ics',gt:'Livestream: Funeral and Celebration of Life for Pastor Rhoda Olubunmi Bajomo-Akindele',gd:'20261121T150000Z/20261121T180000Z',
   s:Date.UTC(2026,10,21,15,0),e:Date.UTC(2026,10,21,23,0)}
 ];
 var liveOv=document.getElementById('live'), lvList=document.getElementById('lvList'), liveBtn=document.getElementById('liveBtn');
+function localLine(ev){ try{ var tz=Intl.DateTimeFormat().resolvedOptions().timeZone; if(!tz||tz==='America/New_York'||tz==='America/Detroit'||tz==='America/Toronto') return '';
+    var t=new Date(ev.s).toLocaleString([], {weekday:'long',day:'numeric',month:'long',hour:'numeric',minute:'2-digit',timeZoneName:'short'});
+    return '<div class="lv-local">Starts at '+t+' your time</div>'; }catch(e){ return ''; } }
 function liveState(ev,now){ if(now>=ev.s-15*60000&&now<=ev.e+30*60000) return 'now'; if(now<ev.s) return 'next'; return 'done'; }
 function renderLive(){ var now=Date.now(), h='', nextDone=false, anyNow=false;
   LIVE.forEach(function(ev){ var st=liveState(ev,now), b='';
@@ -878,10 +932,11 @@ function renderLive(){ var now=Date.now(), h='', nextDone=false, anyNow=false;
        '<a href="'+g+'" target="_blank" rel="noopener">Google Calendar</a>'+
        '<a href="'+ev.url+'" target="_blank" rel="noopener">Email or text reminder</a></div>';
     h+='<div class="lv-card"><div class="lv-row"><span class="lv-day">'+ev.day+'</span>'+b+'</div>'+
-       '<div class="lv-name">'+ev.name+'</div><div class="lv-meta">'+ev.meta+'</div>'+
-       '<a class="lv-go" href="'+ev.url+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>'+(st==='now'?'Watch now':st==='done'?'Watch the replay':'Open the stream')+'</a>'+rem+'</div>';
+       '<div class="lv-name">'+ev.name+'</div><div class="lv-meta">'+ev.meta+'</div>'+localLine(ev)+
+       '<a class="lv-go" href="'+ev.url+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>'+(st==='now'?'Watch now':st==='done'?'Watch the replay':'Open the stream')+'</a>'+rem+'<div><button class="lv-inv" type="button" data-inv="1">Addresses and dress colours: view the invitation</button></div></div>';
   });
   lvList.innerHTML=h; liveBtn.classList.toggle('on',anyNow);
+  [].slice.call(lvList.querySelectorAll('[data-inv]')).forEach(function(x){x.onclick=function(){openInvite();};});
 }
 function openLive(){ closeMenu(); renderLive(); openOverlay(liveOv); liveOv.querySelector('.lv-body').scrollTop=0; }
 liveBtn.onclick=openLive;
@@ -910,8 +965,8 @@ document.getElementById('cdInv').onclick=function(){ openInvite(); };
   if(shareBtn) shareBtn.onclick=function(){
     var data={ title:'A Celebration of Life | Pastor Rhoda Olubunmi Bajomo-Akindele', text:'Faith in Full Bloom: a Celebration of Life for Pastor Rhoda Olubunmi Bajomo-Akindele.', url:SHARE_URL };
     if(navigator.share){ navigator.share(data).catch(function(){}); return; }
-    try{ navigator.clipboard.writeText(SHARE_URL).then(function(){showToast('Link copied');},function(){showToast('Link copied');}); }
-    catch(e){ showToast('Link copied'); }
+    try{ navigator.clipboard.writeText(SHARE_URL).then(function(){showToast('Link copied');},function(){showToast('Copy this link: rhodabajomoakindele.com');}); }
+    catch(e){ showToast('Copy this link: rhodabajomoakindele.com'); }
   };
 })();
 
