@@ -1,0 +1,26 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//rhodabajomoakindele.com//Celebration of Life//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:roa-funeral-celebration@rhodabajomoakindele.com
+DTSTAMP:20261118T170000Z
+DTSTART:20261121T150000Z
+DTEND:20261121T180000Z
+SUMMARY:Livestream: Funeral and Celebration of Life for Pastor Rhoda Olubunmi Bajomo-Akindele
+DESCRIPTION:Stream begins 10:00 AM Eastern with the viewing. Funeral Service 11:00 AM to 1:00 PM at RCCG Victory Temple. Reception from 2:00 PM at Omny Banquet Hall.\n\nWatch live: https://evt.live/roa-funeral-celebration\nMore: https://rhodabajomoakindele.com
+URL:https://evt.live/roa-funeral-celebration
+LOCATION:https://evt.live/roa-funeral-celebration
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Livestream: Funeral and Celebration of Life for Pastor Rhoda Olubunmi Bajomo-Akindele begins in 1 hour
+TRIGGER:-PT1H
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Livestream: Funeral and Celebration of Life for Pastor Rhoda Olubunmi Bajomo-Akindele begins in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR
