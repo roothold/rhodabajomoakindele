@@ -183,6 +183,9 @@ img{display:block;max-width:100%}
 .cbtn:hover .pb{background:rgba(198,150,46,.16)}
 .cbtn .pb svg{width:15px;height:15px;fill:var(--gold);stroke:var(--gold)}
 .cta2{display:flex;gap:34px;flex-wrap:wrap;justify-content:center}
+.ch-dl{margin-top:16px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--ivory-2)}
+.ch-dl a{color:var(--gold);text-decoration:underline;text-decoration-color:var(--gold-line);text-underline-offset:4px}
+.ch-dl a:hover{text-decoration-color:var(--gold)}
 .cbtn .cl{font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--ivory);font-weight:600}
 
 /* edge arrows */
@@ -388,6 +391,16 @@ button.cd-link{background:none;font-family:inherit;cursor:pointer}
 .pv-dl{display:inline-flex;align-items:center;gap:9px;color:var(--gold);text-decoration:none;
   font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;white-space:nowrap}
 .pv-dl svg{width:15px;height:15px;stroke:var(--gold);fill:none;stroke-width:1.7}
+.pv-dlset{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center}
+.pv-dlk{display:inline-flex;align-items:center;gap:8px;color:var(--gold);font-family:'Montserrat',sans-serif;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;font-weight:600}
+.pv-dlk svg,.pv-dlb svg{width:16px;height:16px;stroke:var(--gold);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.pv-dlb{display:inline-flex;align-items:center;gap:9px;min-height:44px;padding:8px 16px;border:1.5px solid var(--gold-line);border-radius:24px;
+  color:var(--ivory);text-decoration:none;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;transition:border-color .2s,background .2s}
+.pv-dlb:hover{border-color:var(--gold);background:rgba(198,150,46,.12)}
+.pv-dlb:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.pv-dlb small{display:block;font-size:9.5px;letter-spacing:.08em;color:var(--ivory-2);text-transform:none;font-weight:500;margin-top:1px}
+.pv-dlb.rec{border-color:var(--gold);background:rgba(198,150,46,.14)}
+@media (max-width:820px){ .pv-dlk{flex-basis:100%;justify-content:center;font-size:10px} .pv-foot{gap:10px;padding-left:12px;padding-right:12px} .pv-dlset{gap:8px;flex-wrap:wrap} .pv-dlb{padding:7px 12px;gap:7px;letter-spacing:.05em;font-size:10.5px} .pv-dlb svg{width:15px;height:15px} }
 
 /* gallery grid */
 .gal-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;min-height:0;
@@ -729,8 +742,11 @@ button.cd-link{background:none;font-family:inherit;cursor:pointer}
   </div>
   <div class="pv-foot">
     <span class="pv-dots" id="pvDots"></span>
-    <a class="pv-dl" id="pvDl" href="Rhoda_Bajomo-Akindele_Program.pdf" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24"><path d="M12 3v12M7 11l5 5 5-5M5 21h14"/></svg>Download Keepsake PDF</a>
+    <div class="pv-dlset" role="group" aria-label="Read or save the program as a PDF">
+      <span class="pv-dlk"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 11l5 5 5-5M5 21h14"/></svg>Read or save</span>
+      <a class="pv-dlb" data-ed="mobile" href="Rhoda_Bajomo-Akindele_Program_Mobile.pdf" target="_blank" rel="noopener" aria-label="Phone edition PDF, 6.8 MB, opens in a new tab"><svg viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.2"/><path d="M11 18.5h2"/></svg><span>Phone edition<small>6.8 MB</small></span></a>
+      <a class="pv-dlb" data-ed="desktop" href="Rhoda_Bajomo-Akindele_Program.pdf" target="_blank" rel="noopener" aria-label="Desktop and print edition PDF, 7 MB, opens in a new tab"><svg viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="12.5" rx="1.6"/><path d="M8 20.5h8M12 16.5v4"/></svg><span>Desktop &amp; print<small>7 MB</small></span></a>
+    </div>
   </div>
 </div>
 
@@ -848,7 +864,7 @@ var C=[
   cta:{t:'View the Invitation', inv:true}},
  {t1:'Chapter 05', t2:'The Program', label:'Keepsake Edition', name:'The Program',
   narr:'The complete Celebration of Life keepsake: her story, tributes, order of service, hymns, and photographs, to read and to keep.', subj:'bookL.jpg',
-  cta:{t:'View the Program', prog:true}},
+  cta:{t:'View the Program', prog:true}, dl:true},
  {t1:'Chapter 06', t2:'In Pictures', label:'A Visual Journey', name:'A Life in Pictures',
   narr:'Moments, people, and milestones that shaped her extraordinary life, from family and ministry to the celebrations that filled her days with joy.', subj:'pic_family.jpg',
   cta:{t:'Explore the Gallery', gal:true}},
@@ -882,6 +898,7 @@ function render(i){
       : '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>')
       +'</span><span class="cl">'+c.cta.t+'</span>';
     if(c.cta.href){ fh+='<a class="cbtn" href="'+c.cta.href+'" target="_blank" rel="noopener">'+inner+'</a>'; }
+    else if(c.cta.prog&&c.dl){ fh+='<button class="cbtn" data-act="prog">'+inner+'</button><div class="ch-dl">Read or save as a PDF: <a href="Rhoda_Bajomo-Akindele_Program_Mobile.pdf" target="_blank" rel="noopener">Phone edition</a> or <a href="Rhoda_Bajomo-Akindele_Program.pdf" target="_blank" rel="noopener">Desktop &amp; print edition</a></div>'; }
     else if(c.cta.prog){ fh+='<button class="cbtn" data-act="prog">'+inner+'</button>'; }
     else if(c.cta.gal){ fh+='<button class="cbtn" data-act="gal">'+inner+'</button>'; }
     else if(c.cta.inv){ fh+='<div class="cta2"><button class="cbtn" data-act="inv">'+inner+'</button><button class="cbtn" data-act="live"><span class="pb"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="cl">Watch Live</span></button></div>'; }
@@ -1106,6 +1123,9 @@ function openChapter(i){ var c=C[i];
 }
 document.getElementById('cdClose').onclick=function(){ closeOverlay(cd); };
 
+/* program PDFs: highlight the edition that suits this screen */
+(function(){ var small=window.matchMedia('(max-width:820px)').matches; var pick=small?'mobile':'desktop';
+  [].slice.call(document.querySelectorAll('.pv-dlb')).forEach(function(a){ if(a.getAttribute('data-ed')===pick) a.classList.add('rec'); }); })();
 /* watch live */
 var LIVE=[
  {name:'Service of Songs',day:'Thursday, 19 November',meta:'7:00 to 9:00 PM ET&ensp;|&ensp;Jesus House DC',url:'https://evt.live/roa-service-of-songs',ics:'cal/service-of-songs.ics',gt:'Livestream: Service of Songs for Pastor Rhoda Olubunmi Bajomo-Akindele',gd:'20261120T000000Z/20261120T020000Z',
