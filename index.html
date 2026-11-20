@@ -414,6 +414,10 @@ button.cd-link{background:none;font-family:inherit;cursor:pointer}
   border:1px solid rgba(201,150,47,.28);box-shadow:0 14px 30px rgba(0,0,0,.4);background:#083024}
 .gal-cell img{width:100%;height:auto;display:block;transition:transform .6s cubic-bezier(.2,.6,.2,1)}
 .gal-cell:hover img{transform:scale(1.05)}
+.gal-play{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:rgba(7,35,25,.62);border:1.5px solid var(--gold);box-shadow:0 8px 24px rgba(0,0,0,.4);pointer-events:none}
+.gal-play svg{width:24px;height:24px;fill:var(--gold);margin-left:4px}
+.lb-vid{max-height:calc(100svh - 190px);max-width:min(92vw,560px);background:#000;border-radius:4px;box-shadow:0 34px 70px rgba(0,0,0,.6),0 0 0 2px var(--gold-line)}
 .gal-cap{position:absolute;left:0;right:0;bottom:0;padding:34px 16px 14px;
   background:linear-gradient(0deg,rgba(4,22,16,.9),transparent);
   font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:var(--ivory);
@@ -778,6 +782,7 @@ button.cd-link{background:none;font-family:inherit;cursor:pointer}
   <div class="pv-stage">
     <button class="ov-arrow l" id="lbPrev" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
     <img class="pv-page" id="lbImg" alt="" style="box-shadow:0 34px 70px rgba(0,0,0,.6),0 0 0 2px var(--gold-line);background:#083024">
+    <video class="pv-page lb-vid" id="lbVid" controls playsinline preload="metadata" hidden></video>
     <button class="ov-arrow r" id="lbNext" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
   </div>
   <div class="pv-foot"></div>
@@ -1055,11 +1060,13 @@ document.getElementById('pvPrev').onclick=function(){pvGo(pvi-1)};
 document.getElementById('pvNext').onclick=function(){pvGo(pvi+1)};
 
 /* gallery — every photograph from the keepsake */
-var GAL=[]; for(var gi=1;gi<=50;gi++){ GAL.push(['g-'+('0'+gi).slice(-2)+'.jpg','']); }
+var GAL=[]; for(var gi=1;gi<=61;gi++){ GAL.push(['g-'+('0'+gi).slice(-2)+'.jpg','']); }
+GAL.push(['v-01.jpg','','v-01.mp4']); /* videos: [poster, caption, file] */
 var gal=document.getElementById('gal'), galGrid=document.getElementById('galGrid'), galBuilt=false;
 function buildGal(){ if(galBuilt)return; var h='';
   GAL.forEach(function(g,i){ var cap=g[1]?'<figcaption class="gal-cap">'+g[1]+'</figcaption>':'';
-    h+='<figure class="gal-cell" data-i="'+i+'" tabindex="0" role="button" aria-label="Open photo '+(i+1)+' of '+GAL.length+'"><img src="gallery/'+g[0]+'" alt="Photo '+(i+1)+' of '+GAL.length+' from her life" loading="lazy">'+cap+'</figure>'; });
+    var vid=g[2]?'<span class="gal-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>':'';
+    h+='<figure class="gal-cell'+(g[2]?' is-vid':'')+'" data-i="'+i+'" tabindex="0" role="button" aria-label="'+(g[2]?'Play video':'Open photo')+' '+(i+1)+' of '+GAL.length+'"><img src="gallery/'+g[0]+'" alt="'+(g[2]?'Video':'Photo')+' '+(i+1)+' of '+GAL.length+' from her life" loading="lazy">'+vid+cap+'</figure>'; });
   galGrid.innerHTML=h;
   [].slice.call(galGrid.children).forEach(function(c){c.onclick=function(){openLightbox(+c.getAttribute('data-i'))}; c.onkeydown=function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); c.onclick(); } };});
   galBuilt=true;
@@ -1068,16 +1075,21 @@ function openGallery(){ closeMenu(); buildGal(); openOverlay(gal); gal.querySele
 document.getElementById('galClose').onclick=function(){closeOverlay(gal)};
 
 /* lightbox */
+var lbVid=document.getElementById('lbVid');
 var lb=document.getElementById('lb'), lbImg=document.getElementById('lbImg'),
     lbCount=document.getElementById('lbCount'), lbTitle=document.getElementById('lbTitle'), lbi=0;
 function lbGo(k){ k=((k%GAL.length)+GAL.length)%GAL.length; lbi=k;
+  var isV=!!GAL[k][2]; lbVid.pause(); lbVid.hidden=!isV; lbImg.hidden=isV;
+  if(isV){ lbVid.poster='gallery/'+GAL[k][0]; lbVid.src='gallery/'+GAL[k][2]; lbVid.classList.add('in'); }
+  else { lbVid.removeAttribute('src'); lbVid.load();
   lbImg.classList.remove('in'); var img=new Image(); img.onload=function(){lbImg.src=img.src;lbImg.classList.add('in')};
-  img.src='gallery/'+GAL[k][0];
+  img.src='gallery/'+GAL[k][0]; }
   lbImg.alt='Photo '+(k+1)+' of '+GAL.length+' from her life'; lbTitle.textContent=GAL[k][1]||'In Loving Memory'; lbCount.textContent=pad2(k+1)+' / '+pad2(GAL.length);
   new Image().src='gallery/'+GAL[(k+1)%GAL.length][0];
 }
 function openLightbox(k){ lbGo(k); openOverlay(lb); }
 document.getElementById('lbClose').onclick=function(){closeOverlay(lb)};
+new MutationObserver(function(){ if(!lb.classList.contains('show')) lbVid.pause(); }).observe(lb,{attributes:true,attributeFilter:['class']});
 document.getElementById('lbPrev').onclick=function(){lbGo(lbi-1)};
 document.getElementById('lbNext').onclick=function(){lbGo(lbi+1)};
 
