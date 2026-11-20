@@ -417,7 +417,7 @@ button.cd-link{background:none;font-family:inherit;cursor:pointer}
 .gal-play{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;display:flex;align-items:center;justify-content:center;
   background:rgba(7,35,25,.62);border:1.5px solid var(--gold);box-shadow:0 8px 24px rgba(0,0,0,.4);pointer-events:none}
 .gal-play svg{width:24px;height:24px;fill:var(--gold);margin-left:4px}
-.lb-vid{max-height:calc(100svh - 190px);max-width:min(92vw,560px);background:#000;border-radius:4px;box-shadow:0 34px 70px rgba(0,0,0,.6),0 0 0 2px var(--gold-line)}
+.lb-vid{max-height:calc(100svh - 190px);max-width:min(92vw,960px);background:#000;border-radius:4px;box-shadow:0 34px 70px rgba(0,0,0,.6),0 0 0 2px var(--gold-line)}
 .gal-cap{position:absolute;left:0;right:0;bottom:0;padding:34px 16px 14px;
   background:linear-gradient(0deg,rgba(4,22,16,.9),transparent);
   font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:var(--ivory);
@@ -1061,7 +1061,7 @@ document.getElementById('pvNext').onclick=function(){pvGo(pvi+1)};
 
 /* gallery — every photograph from the keepsake */
 var GAL=[]; for(var gi=1;gi<=72;gi++){ GAL.push(['g-'+('0'+gi).slice(-2)+'.jpg','']); }
-GAL.push(['v-01.jpg','','v-01.mp4']); /* videos: [poster, caption, file] */
+GAL.push(['v-01.jpg','','v-01.mp4']); GAL.push(['v-02.jpg','','v-02.mp4']); /* videos: [poster, caption, file] */
 var gal=document.getElementById('gal'), galGrid=document.getElementById('galGrid'), galBuilt=false;
 function buildGal(){ if(galBuilt)return; var h='';
   GAL.forEach(function(g,i){ var cap=g[1]?'<figcaption class="gal-cap">'+g[1]+'</figcaption>':'';
